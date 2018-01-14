@@ -1,16 +1,46 @@
-var React = require('react');
-var Nav = require('./Nav');
-var Home = require('./Home');
+import React, { Component } from "react";
+import Background from "../images/redMountain.jpg";
+import Nav from "./Nav";
 
-class App extends React.Component {
-render(){
-  return(
-      <div className='container'>
-        <Nav/>
-        <Home className='home' style={{backgroundImage: "url('app/images/pattern.svg')"}}/>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchterm: ""
+    };
+  }
+
+  // searchInput = event => {
+  //   this.setState({
+  //     searchterm: event.target.value
+  //   });
+  // };
+
+  // onSubmit = event => {
+  //   this.setState({
+  //     searchterm: event.target.value
+  //   });
+  // };
+
+  render() {
+    const { searchterm } = this.state;
+    return (
+      <div
+        className="app-container"
+        style={{ backgroundImage: `url(${Background})` }}
+      >
+        <Nav
+          searchterm={searchterm}
+          // searchInput={this.searchInput}
+          // onSubmit={this.onSubmit}
+        />
+        {/* <img src={Background} /> */}
+        {/* <Home
+          className="home"
+          style={{ backgroundImage: "url('../images/redMountain.jpg')" }}
+        /> */}
       </div>
-
-  )
+    );
   }
 }
 

@@ -1,12 +1,27 @@
 body {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
+    Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  height: 100vh;
+  margin: 0;
 }
 
-.nav {
-  background-color: red;
+#app {
+  width: 100%;
+  height: 100%;
+}
+.navBar {
+  background-color: #85262d;
+  display: flex;
+  padding: 5px;
 }
 
-.container {
+.title-nav {
+  flex-grow: 3;
+  color: white;
+  align-items: center;
+}
+
+.app-container {
   width: 100%;
   height: 100%;
 }
