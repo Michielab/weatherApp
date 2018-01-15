@@ -3,6 +3,7 @@ body {
     Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   height: 100vh;
   margin: 0;
+  overflow: hidden;
 }
 
 #app {

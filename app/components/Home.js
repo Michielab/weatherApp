@@ -15,7 +15,7 @@ class Home extends Component {
             className="input-city"
             onChange={searchInput}
           />
-          <button className="search-city" onSubmit={onSubmit}>
+          <button className="search-city" onClick={onSubmit}>
             Get Weather
           </button>
         </div>

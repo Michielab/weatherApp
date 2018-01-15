@@ -1,17 +1,39 @@
-var axios = require('axios');
-var APIKEY = '83cafbdc45e0544bc59c8e671eb700b1';
+const axios = require("axios");
+const APIKEY = "83cafbdc45e0544bc59c8e671eb700b1";
 
-
-// http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
-
-function getWeather (city) {
-  return axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + city + `&APPID=${APIKEY}`)
-    .then(function (weather) {
+http: function getWeather(city) {
+  city = capitalize(city);
+  return axios
+    .get(
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        `&type=accurate&APPID=${APIKEY}`
+    )
+    .then(function(weather) {
       return weather.data;
-    });
+    })
+    .catch(handleError);
+}
+function handleError(error) {
+  console.warn(error);
+  return null;
+}
+
+function getCityId(cityName) {
+  return axios
+    .get("http://localhost:8080/app/utils/city.list.json")
+    .then(cities => {
+      return cities.data.filter(city => city.name == cityName);
+    })
+    .catch(handleError);
+}
+
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1);
 }
 
 module.exports = {
-  weather: function(city){
-    return getWeather(city);}
+  weather: city => {
+    return getWeather(city);
+  }
 };
