@@ -1,54 +1,26 @@
-var React = require('react');
-var api = require('../utils/api');
+import React, { Component } from "react";
 
-class Home extends React.Component {
-  constructor(props){
-    super(props);
+class Home extends Component {
+  render() {
+    const { searchInput, onSubmit } = this.props;
 
-    this.state = {
-      city: ""
-    };
-
-this.handleChange = this.handleChange.bind(this);
-this.handleClick = this.handleClick.bind(this);
-  }
-
-handleChange(event){
-  var value = event.target.value;
-  this.setState(function(){
-    return {
-      city: value
-    };
-  });
-}
-
-handleClick(){
-  api.weather(this.state.city)
-  .then(function (weather) {
-    console.log(weather);
-});
-}
-
-
-
-render(){
-  return(
-      <div className='home-container'>
-        <h1>
-          Enter a City or Country
-        </h1>
-        <input
-          placeholder="Amsterdam"
-          onChange={this.handleChange}
-          value={this.state.city}
-        />
-        <button
-          onClick={this.handleClick}
-          >
-          Get Weather
-        </button>
+    return (
+      <div className="home-container">
+        <h1 className="title-home">Weather checker</h1>
+        <div className="search-container-home">
+          <input
+            className="input-city"
+            id="home"
+            placeholder="Amsterdam"
+            className="input-city"
+            onChange={searchInput}
+          />
+          <button className="search-city" onSubmit={onSubmit}>
+            Get Weather
+          </button>
+        </div>
       </div>
-    )
+    );
   }
 }
 

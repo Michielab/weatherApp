@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Background from "../images/redMountain.jpg";
 import Nav from "./Nav";
+import Home from "./Home";
 
 class App extends Component {
   constructor(props) {
@@ -10,17 +11,19 @@ class App extends Component {
     };
   }
 
-  // searchInput = event => {
-  //   this.setState({
-  //     searchterm: event.target.value
-  //   });
-  // };
+  searchInput = event => {
+    this.setState({
+      searchterm: event.target.value
+    });
+    console.log(this.state.searchterm);
+  };
 
-  // onSubmit = event => {
-  //   this.setState({
-  //     searchterm: event.target.value
-  //   });
-  // };
+  onSubmit = event => {
+    // api.weather(this.state.city);
+    //   .then(function (weather) {
+    //     console.log(weather);
+    // });
+  };
 
   render() {
     const { searchterm } = this.state;
@@ -29,16 +32,8 @@ class App extends Component {
         className="app-container"
         style={{ backgroundImage: `url(${Background})` }}
       >
-        <Nav
-          searchterm={searchterm}
-          // searchInput={this.searchInput}
-          // onSubmit={this.onSubmit}
-        />
-        {/* <img src={Background} /> */}
-        {/* <Home
-          className="home"
-          style={{ backgroundImage: "url('../images/redMountain.jpg')" }}
-        /> */}
+        <Nav searchInput={this.searchInput} onSubmit={this.onSubmit} />
+        <Home searchInput={this.searchInput} onSubmit={this.onSubmit} />
       </div>
     );
   }

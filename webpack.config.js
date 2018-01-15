@@ -9,7 +9,15 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js)$/, use: "babel-loader" },
+      {
+        test: /\.(js)$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: [require("babel-plugin-transform-class-properties")]
+          }
+        }
+      },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {
         test: /\.(jpg|png|gif|svg|pdf|ico)$/,
