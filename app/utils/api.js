@@ -1,5 +1,4 @@
 const axios = require("axios");
-const APIKEY = "83cafbdc45e0544bc59c8e671eb700b1";
 
 http: function getWeather(city) {
   city = capitalize(city);
