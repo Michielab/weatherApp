@@ -1,9 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var App = require('./components/App');
-require('./index.css');
+require("./index.css");
+// import { React } from "react";
+import render from "react-dom";
+import App from "./components/App";
+import BrowserRouter from "react-router-dom";
+import React from "react";
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('app')
-)
+render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("app")
+);

@@ -4,6 +4,8 @@ import Nav from "./Nav";
 import Home from "./Home";
 import Forecast from "./Forecast";
 import Api from "../utils/api";
+// import { Switch } from "../../../../Library/Caches/typescript/2.6/node_modules/@types/react-router";
+import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -38,11 +40,14 @@ class App extends Component {
         style={{ backgroundImage: `url(${Background})` }}
       >
         <Nav searchInput={this.searchInput} onSubmit={this.onSubmit} />
-        {forecast === "" || forecast === null ? (
-          <Home searchInput={this.searchInput} onSubmit={this.onSubmit} />
-        ) : (
-          <Forecast forecast={forecast} />
-        )}
+        <Switch>
+          <Route exact path="/">
+            <Home searchInput={this.searchInput} onSubmit={this.onSubmit} />
+          </Route>
+          <Route exact path="/roster">
+            <Forecast forecast={forecast} />
+          </Route>
+        </Switch>
       </div>
     );
   }

@@ -1,6 +1,6 @@
-const axios = require("axios");
+var axios = require("axios");
 
-http: function getWeather(city) {
+function getWeather(city) {
   city = capitalize(city);
   return axios
     .get(
