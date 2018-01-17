@@ -6,6 +6,9 @@ import Forecast from "./Forecast";
 import Api from "../utils/api";
 // import { Switch } from "../../../../Library/Caches/typescript/2.6/node_modules/@types/react-router";
 import { Switch, Route } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
+
+const history = createHistory();
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +25,11 @@ class App extends Component {
     });
   };
 
-  onSubmit = city => {
-    console.log(event.target.value);
-    this.props.history.push({ pathname: "/forecast", search: `?city=${city}` });
+  onSubmit = () => {
+    history.push({
+      pathname: "/forecast",
+      search: `?city=${this.state.searchterm}`
+    });
     // Api.weather(this.state.searchterm).then(weather => {
     //   this.setState({ searchterm: "", weather });
     //   console.log(weather);
@@ -43,7 +48,7 @@ class App extends Component {
           <Route exact path="/">
             <Home searchInput={this.searchInput} onSubmit={this.onSubmit} />
           </Route>
-          <Route exact path="/forecast">
+          <Route path="/forecast/:city">
             <Forecast forecast={forecast} />
           </Route>
         </Switch>
