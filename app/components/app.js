@@ -22,14 +22,13 @@ class App extends Component {
     });
   };
 
-  onSubmit = () => {
-    Api.weather(this.state.searchterm).then(weather => {
-      this.setState({
-        searchterm: "",
-        weather
-      });
-      console.log(weather);
-    });
+  onSubmit = city => {
+    console.log(event.target.value);
+    this.props.history.push({ pathname: "/forecast", search: `?city=${city}` });
+    // Api.weather(this.state.searchterm).then(weather => {
+    //   this.setState({ searchterm: "", weather });
+    //   console.log(weather);
+    // });
   };
 
   render() {
@@ -44,7 +43,7 @@ class App extends Component {
           <Route exact path="/">
             <Home searchInput={this.searchInput} onSubmit={this.onSubmit} />
           </Route>
-          <Route exact path="/roster">
+          <Route exact path="/forecast">
             <Forecast forecast={forecast} />
           </Route>
         </Switch>
@@ -53,4 +52,4 @@ class App extends Component {
   }
 }
 
-module.exports = App;
+export default App;

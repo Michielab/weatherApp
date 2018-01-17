@@ -1,8 +1,8 @@
 require("./index.css");
 // import { React } from "react";
-import render from "react-dom";
+import { render } from "react-dom";
 import App from "./components/App";
-import BrowserRouter from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import React from "react";
 
 render(

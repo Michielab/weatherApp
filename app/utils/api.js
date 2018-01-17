@@ -1,12 +1,13 @@
-var axios = require("axios");
+const axios = require("axios");
+const APIKEY = "b714ec74bbab5650795063cb0fdf5fbe";
 
 function getWeather(city) {
   city = capitalize(city);
   return axios
     .get(
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      "http://api.openweathermap.org/data/2.5/forecast/daily?q=" +
         city +
-        `&type=accurate&APPID=${APIKEY}`
+        `&type=accurate&APPID=${APIKEY}&cnt=5`
     )
     .then(function(weather) {
       return weather.data;
