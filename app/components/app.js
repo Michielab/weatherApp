@@ -22,24 +22,22 @@ class App extends Component {
             );
           }}
         />
-        {/* <Route
+        <Route
           exact
           path="/"
           render={props => {
             return (
               <Home
-                searchInput={this.searchInput}
                 onSubmit={city => {
                   props.history.push({
                     pathname: "/forecast",
-                    search: `?city=${searchterm}`
+                    search: `?city=${city}`
                   });
                 }}
               />
             );
           }}
-        /> */}
-
+        />
         <Route path="/forecast" component={Forecast} />
       </div>
     );

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Background from "../images/redMountain.jpg";
+import Search from "./Search";
 
 class Home extends Component {
   render() {
-    const { searchInput, onSubmit } = this.props;
+    const { onSubmit } = this.props;
 
     return (
       <div
@@ -11,18 +12,7 @@ class Home extends Component {
         style={{ backgroundImage: `url(${Background})` }}
       >
         <h1 className="title-home">Weather checker</h1>
-        <div className="search-container-home">
-          <input
-            className="input-city"
-            id="home"
-            placeholder="Amsterdam"
-            className="input-city"
-            onChange={searchInput}
-          />
-          <button className="search-city" onClick={onSubmit}>
-            Get Weather
-          </button>
-        </div>
+        <Search onSubmit={onSubmit} styling="search-container-home" />
       </div>
     );
   }

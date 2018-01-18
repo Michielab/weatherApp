@@ -34,7 +34,6 @@ class Forecast extends Component {
 
   render() {
     const { loading, forecastData } = this.state;
-    console.log("test");
     return loading === true ? (
       <h1 className="forecast-header"> Loading </h1>
     ) : (

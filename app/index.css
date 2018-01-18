@@ -75,6 +75,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-position: center;
 }
 
 .title-home {
@@ -84,13 +85,41 @@ body {
 }
 
 .search-container-home {
-  width: 25%;
+  width: 20%;
+  height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
-#home {
-  margin-bottom: 10px;
+.forecast-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 50px auto;
+}
+.dayContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 35px;
+}
+.forecast-header {
+  font-size: 65px;
+  color: #333;
+  font-weight: 100;
+  text-align: center;
+}
+.subheader {
+  font-size: 30px;
+  color: #333;
+  font-weight: 100;
+}
+.weather {
+  height: 130px;
 }
