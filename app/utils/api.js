@@ -9,8 +9,8 @@ function getWeather(city) {
         city +
         `&type=accurate&APPID=${APIKEY}&cnt=5`
     )
-    .then(function(weather) {
-      return weather.data;
+    .then(function(res) {
+      return { city: res.data.city.name, weatherList: res.data.list };
     })
     .catch(handleError);
 }

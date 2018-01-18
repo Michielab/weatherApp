@@ -2,17 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Api from "../utils/api";
 import queryString from "query-string";
+import DayWeather from "./DayWeather";
 
 class Forecast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: "",
-      forecastData: []
+      forecastData: {},
+      loading: true
     };
   }
   componentDidMount() {
     let city = queryString.parse(this.props.location.search).city;
+    this.makeRequest(city);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let city = queryString.parse(nextProps.location.search).city;
     this.makeRequest(city);
   }
 
@@ -21,12 +27,26 @@ class Forecast extends Component {
       loading: true
     });
 
-    api.weather(city).then(res => {
+    Api.weather(city).then(res => {
       this.setState({ loading: false, forecastData: res });
     });
   }
+
   render() {
-    return <div />;
+    const { loading, forecastData } = this.state;
+    console.log("test");
+    return loading === true ? (
+      <h1 className="forecast-header"> Loading </h1>
+    ) : (
+      <div>
+        <h1 className="forecast-header">{forecastData.city}</h1>
+        <div className="forecast-container">
+          {forecastData.weatherList.map(function(listItem) {
+            return <DayWeather key={listItem.dt} day={listItem} />;
+          }, this)}
+        </div>
+      </div>
+    );
   }
 }
 

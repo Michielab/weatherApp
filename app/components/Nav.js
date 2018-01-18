@@ -1,8 +1,21 @@
 import React from "react";
 
 class Nav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchterm: ""
+    };
+  }
+
+  searchInput = event => {
+    this.setState({
+      searchterm: event.target.value
+    });
+  };
   render() {
-    const { searchInput, onSubmit, searchterm } = this.props;
+    const { onSubmit } = this.props;
+    const { searchterm } = this.state;
 
     return (
       <div className="navBar">
@@ -12,9 +25,14 @@ class Nav extends React.Component {
             className="input-city"
             placeholder="Amsterdam"
             className="input-city"
-            onChange={searchInput}
+            onChange={this.searchInput}
           />
-          <button className="search-city" onSubmit={onSubmit}>
+          <button
+            className="search-city"
+            onClick={() => {
+              onSubmit(searchterm);
+            }}
+          >
             Get Weather
           </button>
         </div>
