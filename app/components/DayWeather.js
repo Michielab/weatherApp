@@ -5,7 +5,12 @@ function DayWeather(props) {
   const date = utils.getDate(props.day.dt);
   const icon = props.day.weather[0].icon;
   return (
-    <div className="dayContainer">
+    <div
+      className="dayContainer"
+      onClick={() => {
+        props.details(props.day);
+      }}
+    >
       <img
         className="weather"
         src={"/app/images/weather-icons/" + icon + ".svg"}

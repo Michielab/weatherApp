@@ -32,6 +32,14 @@ class Forecast extends Component {
     });
   }
 
+  getDetails = city => {
+    let cityName = this.state.forecastData.city;
+    this.props.history.push({
+      pathname: `/details/${cityName}`,
+      state: city
+    });
+  };
+
   render() {
     const { loading, forecastData } = this.state;
     return loading === true ? (
@@ -40,9 +48,15 @@ class Forecast extends Component {
       <div>
         <h1 className="forecast-header">{forecastData.city}</h1>
         <div className="forecast-container">
-          {forecastData.weatherList.map(function(listItem) {
-            return <DayWeather key={listItem.dt} day={listItem} />;
-          }, this)}
+          {forecastData.weatherList.map(listItem => {
+            return (
+              <DayWeather
+                key={listItem.dt}
+                day={listItem}
+                details={this.getDetails}
+              />
+            );
+          })}
         </div>
       </div>
     );

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Nav from "./Nav";
 import Home from "./Home";
 import Forecast from "./Forecast";
+import Details from "./Details";
+
 import { Route } from "react-router-dom";
 
 class App extends Component {
@@ -39,6 +41,7 @@ class App extends Component {
           }}
         />
         <Route path="/forecast" component={Forecast} />
+        <Route path="/details/:city" component={Details} />
       </div>
     );
   }
