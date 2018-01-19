@@ -14,7 +14,7 @@ function DayWeather(props) {
     >
       <img
         className="weather"
-        src={"/app/images/weather-icons/" + icon + ".svg"}
+        src={`weather-icons/${icon}.svg`}
         alt="Weather"
       />
       {props.temp ? (

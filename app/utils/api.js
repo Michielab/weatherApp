@@ -5,7 +5,7 @@ function getWeather(city) {
   city = capitalize(city);
   return axios
     .get(
-      "http://api.openweathermap.org/data/2.5/forecast/daily?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast/daily?q=" +
         city +
         `&type=accurate&APPID=${APIKEY}&cnt=5`
     )
@@ -23,7 +23,7 @@ function getCurrentWeather(city) {
   city = capitalize(city);
   return axios
     .get(
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
         `&APPID=${APIKEY}`
     )
