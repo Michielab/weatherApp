@@ -19,6 +19,20 @@ function handleError(error) {
   return null;
 }
 
+function getCurrentWeather(city) {
+  city = capitalize(city);
+  return axios
+    .get(
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        `&APPID=${APIKEY}`
+    )
+    .then(function(res) {
+      return res.data.main.temp;
+    })
+    .catch(handleError);
+}
+
 function getCityId(cityName) {
   return axios
     .get("http://localhost:8080/app/utils/city.list.json")
@@ -32,8 +46,19 @@ function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
 }
 
+function getAllWeather(city) {
+  return axios
+    .all([getWeather(city), getCurrentWeather(city)])
+    .then(function(res) {
+      const weather = res[0];
+      const currentWeather = res[1];
+      return { weather, currentWeather };
+    })
+    .catch(handleError);
+}
+
 module.exports = {
   weather: city => {
-    return getWeather(city);
+    return getAllWeather(city);
   }
 };

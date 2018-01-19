@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Background from "../images/redMountain.jpg";
 import Search from "./Search";
+import PropTypes from "prop-types";
 
 class Home extends Component {
   render() {
@@ -17,5 +18,9 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  onSubmit: PropTypes.func
+};
 
 export default Home;

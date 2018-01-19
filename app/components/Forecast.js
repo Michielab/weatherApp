@@ -9,7 +9,9 @@ class Forecast extends Component {
     super(props);
     this.state = {
       forecastData: {},
-      loading: true
+      currentWeather: "",
+      loading: true,
+      error: false
     };
   }
   componentDidMount() {
@@ -28,7 +30,16 @@ class Forecast extends Component {
     });
 
     Api.weather(city).then(res => {
-      this.setState({ loading: false, forecastData: res });
+      if (res.weather === null || res.currentWeather === null) {
+        this.setState({
+          error: true
+        });
+      }
+      this.setState({
+        loading: false,
+        forecastData: res.weather,
+        currentWeather: res.currentWeather
+      });
     });
   }
 
@@ -41,19 +52,24 @@ class Forecast extends Component {
   };
 
   render() {
-    const { loading, forecastData } = this.state;
+    const { loading, forecastData, currentWeather, error } = this.state;
     return loading === true ? (
-      <h1 className="forecast-header"> Loading </h1>
+      error === true ? (
+        <h1 className="forecast-header"> Oops, can't find the city! </h1>
+      ) : (
+        <h1 className="forecast-header"> Loading </h1>
+      )
     ) : (
       <div>
         <h1 className="forecast-header">{forecastData.city}</h1>
         <div className="forecast-container">
-          {forecastData.weatherList.map(listItem => {
+          {forecastData.weatherList.map((listItem, index) => {
             return (
               <DayWeather
                 key={listItem.dt}
                 day={listItem}
                 details={this.getDetails}
+                temp={index === 0 ? currentWeather : listItem.temp.day}
               />
             );
           })}
@@ -62,7 +78,5 @@ class Forecast extends Component {
     );
   }
 }
-
-Forecast.propTypes = {};
 
 export default Forecast;

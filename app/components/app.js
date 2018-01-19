@@ -5,6 +5,8 @@ import Forecast from "./Forecast";
 import Details from "./Details";
 
 import { Route } from "react-router-dom";
+import mainFont from "../fonts/Gotham-Book.otf";
+import { injectGlobal } from "styled-components";
 
 class App extends Component {
   render() {
@@ -46,5 +48,17 @@ class App extends Component {
     );
   }
 }
+
+injectGlobal`
+  @font-face {
+  font-family: gotham;
+  src: url(${mainFont});
+}
+  body {
+    font-family: gotham;
+    height: 100vh;
+    margin: 0;
+  }
+`;
 
 export default App;
